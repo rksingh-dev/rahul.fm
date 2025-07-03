@@ -6,6 +6,7 @@ import { Track } from '@/pages/Index';
 const YOUTUBE_API_KEYS = [
   'AIzaSyAecTrwCptOUDUtfcKd4_EEec92tts3jxU',
   'AIzaSyDlNlMEHHOU1TlB_frHBvhJlI24d92pzUU',
+  'AIzaSyBbHep8gvopy9xgVxlTy653IllFP71Mvhc',
 ];
 
 interface SearchBarProps {
