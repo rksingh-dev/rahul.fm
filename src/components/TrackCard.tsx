@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Play, MoreHorizontal, Plus } from 'lucide-react';
+import { Play, MoreHorizontal, Plus, ListMusic } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Track, Playlist } from '@/pages/Index';
@@ -9,9 +9,18 @@ interface TrackCardProps {
   onPlay: () => void;
   onAddToPlaylist: (playlistId: string, track: Track) => void;
   playlists: Playlist[];
+  showAddToPlaylist?: boolean;
+  onAddToQueue?: (track: Track) => void;
 }
 
-export const TrackCard = ({ track, onPlay, onAddToPlaylist, playlists }: TrackCardProps) => {
+export const TrackCard = ({ 
+  track, 
+  onPlay, 
+  onAddToPlaylist, 
+  playlists,
+  showAddToPlaylist = true,
+  onAddToQueue
+}: TrackCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -53,7 +62,16 @@ export const TrackCard = ({ track, onPlay, onAddToPlaylist, playlists }: TrackCa
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-black border-gray-700" align="end">
-              {playlists.map((playlist) => (
+              {onAddToQueue && (
+                <DropdownMenuItem 
+                  onClick={() => onAddToQueue(track)}
+                  className="text-white hover:bg-black cursor-pointer"
+                >
+                  <ListMusic className="mr-2 h-4 w-4" />
+                  Add to Queue
+                </DropdownMenuItem>
+              )}
+              {showAddToPlaylist && playlists.map((playlist) => (
                 <DropdownMenuItem 
                   key={playlist.id}
                   onClick={() => onAddToPlaylist(playlist.id, track)}

@@ -5,10 +5,19 @@ interface SearchResultsProps {
   results: Track[];
   onPlayTrack: (track: Track) => void;
   onAddToPlaylist: (playlistId: string, track: Track) => void;
-  playlists: Playlist[];
+  playlists?: Playlist[];
+  showAddToPlaylist?: boolean;
+  onAddToQueue?: (track: Track) => void;
 }
 
-export const SearchResults = ({ results, onPlayTrack, onAddToPlaylist, playlists }: SearchResultsProps) => {
+export const SearchResults = ({ 
+  results, 
+  onPlayTrack, 
+  onAddToPlaylist, 
+  playlists = [],
+  showAddToPlaylist = true,
+  onAddToQueue
+}: SearchResultsProps) => {
   return (
     <div className="animate-fade-in animate-slide-in-up">
       <h2 className="text-2xl font-bold mb-6">Search Results</h2>
@@ -20,6 +29,8 @@ export const SearchResults = ({ results, onPlayTrack, onAddToPlaylist, playlists
             onPlay={() => onPlayTrack(track)}
             onAddToPlaylist={onAddToPlaylist}
             playlists={playlists}
+            showAddToPlaylist={showAddToPlaylist}
+            onAddToQueue={onAddToQueue}
           />
         ))}
       </div>
