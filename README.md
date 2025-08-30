@@ -1,4 +1,4 @@
-# RahulVerse - Music Streaming Platform
+# Rahulfm - Music Streaming Platform
 
 A modern music streaming platform built with React, TypeScript, and Tailwind CSS. Features include music search, playlist management, and collaborative jam sessions.
 
